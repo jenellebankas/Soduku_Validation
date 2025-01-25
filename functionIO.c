@@ -1,13 +1,12 @@
 /**
- * @file main.c
+ * @file functions.c
  * @author Jenelle Bankas 
  * @brief Sudoku Solution Validator 
 **/
 
 #include "define.h"
-#include "functions.h"
 
-// main function calls here 
+// all helper functions declared here
 
 /**
 * @brief 
@@ -15,7 +14,3 @@
 * @param 
 * @returns
 */
-
-int main() {
-    return 0
-}
