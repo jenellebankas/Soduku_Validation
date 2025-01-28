@@ -18,3 +18,8 @@ typedef struct {
     int row;
     int column;
 } parameters;
+
+// defining data type for storing grid info
+typedef struct {
+    
+} grid;

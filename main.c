@@ -16,6 +16,7 @@
 * @returns
 */
 
-int main() {
-    return 0
+// check for file name with grid in it 
+int main(int argc, char* argv[]) {
+    return 0;
 }
