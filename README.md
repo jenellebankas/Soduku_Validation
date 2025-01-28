@@ -7,8 +7,8 @@
 ## File Descriptions 
 
 ### define.h
-### functionIO.c
-### functionIO.h
+### fileIO.c
+### file.h
 ### functions.c
 ### functions.g
 ### main.c
