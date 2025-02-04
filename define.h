@@ -35,8 +35,6 @@ typedef struct {
 // defining data type for storing grid info
 typedef struct {
     int **gridArray;
-    int rowDim;
-    int colDim;
 } gridInfo;
 
 #endif

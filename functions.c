@@ -18,14 +18,37 @@
 
 // setup threads here to check the rows and columns 
 
-int threadDef(){
+void threadDef(){
 
-    // initialising thread 
-    pthread_t thread_id;
-    pthread_create(&thread_id, NULL, checkInt, NULL);
-    pthread_join(thread_id, NULL);
+    // declaring parameters struct 
+    parameters *data = (parameters*) malloc(sizeof(parameters));
+    data->row = 1;
+    data->column = 1;
 
-    return 0;
+    // initialising threads
+    // will re-factor this at some point 
+
+    pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7, thread8, thread9;
+
+    pthread_create(&thread1, NULL, checkInt, data);
+    pthread_create(&thread2, NULL, checkInt, data);
+    pthread_create(&thread3, NULL, checkInt, data);
+    pthread_create(&thread4, NULL, checkInt, data);
+    pthread_create(&thread5, NULL, checkInt, data);
+    pthread_create(&thread6, NULL, checkInt, data);
+    pthread_create(&thread7, NULL, checkInt, data);
+    pthread_create(&thread8, NULL, checkInt, data);
+    pthread_create(&thread9, NULL, checkInt, data);
+
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+    pthread_join(thread3, NULL);
+    pthread_join(thread4, NULL);
+    pthread_join(thread5, NULL);
+    pthread_join(thread6, NULL);
+    pthread_join(thread7, NULL);
+    pthread_join(thread8, NULL);
+    pthread_join(thread9, NULL);
 }
 
 /**

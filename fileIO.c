@@ -47,23 +47,6 @@ int openFile(char filename[], gridInfo *funcGridInfo) {
         fseek(file, 0, SEEK_SET);
     }
     
-
-    // Calls checkDimensions() function before proceding to ensure that time is not wasted
-
-    int rowLength = checkRowDimensions(file);
-    if (rowLength == EXIT_FILE_ERROR) {
-        return EXIT_FILE_ERROR;
-    }
-
-    int colLength = checkColDimensions(file, rowLength);
-    if (colLength == EXIT_FILE_ERROR) {
-        fclose(file);
-        return EXIT_FILE_ERROR;
-    }
-
-    funcGridInfo->rowDim = rowLength;
-    funcGridInfo->colDim = colLength;
-
     allocateCheck = allocateMaze(funcGridInfo);
     
     if (allocateCheck == EXIT_FILE_ERROR) {
