@@ -8,7 +8,7 @@
 
 ### define.h
 ### fileIO.c
-### file.h
+### fileIO.h
 ### functions.c
-### functions.g
+### functions.h
 ### main.c

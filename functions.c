@@ -19,6 +19,12 @@
 // setup threads here to check the rows and columns 
 
 int threadDef(){
+
+    // initialising thread 
+    pthread_t thread_id;
+    pthread_create(&thread_id, NULL, checkInt, NULL);
+    pthread_join(thread_id, NULL);
+
     return 0;
 }
 
@@ -32,8 +38,9 @@ int threadDef(){
 // function for checking if all values found 
 // using flags to check if values 1-9 are present 
 // make current val be to check and re
+// do by column with 9 threads 
 
-int checkInt(gridInfo *grid){
+int* checkInt(gridInfo *grid, int startIndex){
 
     int validNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     int i = 0;

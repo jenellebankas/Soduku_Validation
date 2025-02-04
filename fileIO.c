@@ -20,7 +20,6 @@
 
 int openFile(char filename[], gridInfo *funcGridInfo) {
 
-
     // Error checking for the contents of the file, this program is adapted from an example provided on: https://stackoverflow.com/questions/13566082/how-to-check-if-a-file-has-content-or-not-using-c
     
     long size;
@@ -87,15 +86,15 @@ int openFile(char filename[], gridInfo *funcGridInfo) {
 /**
 * @brief dynamically allocating memory for the mazeInfo struct, more specifically the maze map 
 *
-* @param funcMazeInfo declared in main() and memory allocated in the function
-* @param funcMazePiece declared in main() and used for memory allocation for maze struct 
+* @param 
+* @param
 * @returns 0 when file opens and data, dimensions are valid and returns 3 if memory cannot be allocated 
 */
 
 
 // This program is adapted from an example provided on: https://github.com/Scsabr/comp1921-struct-pointers/blob/main/code.c 
 
-int allocateMaze(gridInfo *funcGridInfo) {
+int allocateGrid(gridInfo *funcGridInfo) {
 
     funcGridInfo->gridArray = malloc(9 * sizeof(char));
     for (int i = 0; i < 9; i++) {
@@ -147,20 +146,18 @@ int checkRowDimensions(FILE *file) {
 */
 
 
+// change so the col and row checked at the same time 
+
 int checkColDimensions(FILE *file, int rows) {
 
     fseek(file, 0, SEEK_SET);
 
     // Idea taken from: https://stackoverflow.com/questions/2137156/finding-line-size-of-each-row-in-a-text-file#:~:text=If%20you%20already%20know%20that,strlen()%20on%20each%20substring.
     
-    int expectedLineLength = 0; 
+    int expectedLineLength = 9; 
     int i = 0;
     char d;
     char c;
-
-    while ((d = fgetc(file)) != '\n') {
-        expectedLineLength++;
-    }
 
     fseek(file, 0, SEEK_SET);
 
@@ -184,7 +181,7 @@ int checkColDimensions(FILE *file, int rows) {
         }
 
         if (i != expectedLineLength) {
-            printf("Maze dimensions not valid\n");
+            printf("Grid dimensions not valid\n");
             return EXIT_FILE_ERROR;
         }   
     }
@@ -195,7 +192,7 @@ int checkColDimensions(FILE *file, int rows) {
         return EXIT_FILE_ERROR;
     }
 
-    return expectedLineLength;
+    return 0;
 }
 
 
