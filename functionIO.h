@@ -5,3 +5,5 @@
 **/
 
 #include "define.h"
+
+// forward definitions here 

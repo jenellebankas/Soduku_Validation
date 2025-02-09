@@ -1,5 +1,5 @@
 /**
- * @file functions.c
+ * @file functionIO.c
  * @author Jenelle Bankas 
  * @brief Sudoku Solution Validator 
 **/
