@@ -12,7 +12,7 @@
 // need to check for empty spaces and invalid tokens (maybe inputted as csv)
 
 /**
-* @brief 
+* @brief opens file and carries out initial error checking
 *
 * @param 
 * @returns
@@ -90,66 +90,35 @@ int allocateGrid(gridInfo *funcGridInfo) {
     }
 
     return 0;
-    
-}/**
-* @brief process lines in file to calculate how many lines of the maze and check if within specified bounds 
-*
-* @param file declared within the openFile() function 
-* @return row dimensions or 3 if error occurs with maze dimensions not being correct 
-*/
 
-int checkRowDimensions(FILE *file) {
-
-    // Determine buffer size and check all lines same length 
-    // This program is adapted from an example provided on: https://stackoverflow.com/questions/2137156/finding-line-size-of-each-row-in-a-text-file#:~:text=If%20you%20already%20know%20that,strlen()%20on%20each%20substring.
-
-    int buffer = 100;
-    char line[buffer];
-    int counter = 0;
-
-    while (fgets(line, buffer, file)) {
-        counter++;
-    } 
-    
-    if (counter < ACCEPTED_DIM || counter > ACCEPTED_DIM) {
-        fclose(file);
-        printf("Grid dimensions not valid\n");
-        return EXIT_FILE_ERROR;
-    }
-
-    return counter;  
 }
 
 
 /**
-* @brief process characters within the maze file checking that they are valid and that each row is the same length 
+* @brief check dimensions of file are correct
 *
 * @param file from the user 
 * @return number of columns or 3 if error occurs with characters in the maze or bounds 
 */
 
-
-// change so the col and row checked at the same time 
-
-int checkColDimensions(FILE *file, int rows) {
+int checkDimensions(FILE *file) {
 
     fseek(file, 0, SEEK_SET);
 
     // Idea taken from: https://stackoverflow.com/questions/2137156/finding-line-size-of-each-row-in-a-text-file#:~:text=If%20you%20already%20know%20that,strlen()%20on%20each%20substring.
-    
-    int expectedLineLength = 9; 
+
     int i = 0;
-    char d;
+    int j = 0;
     char c;
 
     fseek(file, 0, SEEK_SET);
-
     
-    for (int j = 0; j < rows; j++) {
+    for (j = 0; j < 11; j++) {
         i = 0; 
 
         while ((c = fgetc(file)) != '\n') {
-            i++; 
+            if(c != ',')
+                i++; 
 
             if (c == EOF) {
                 i--;
@@ -163,14 +132,14 @@ int checkColDimensions(FILE *file, int rows) {
             }
         }
 
-        if (i != expectedLineLength) {
+        if (i != ACCEPTED_DIM) {
             printf("Grid dimensions not valid\n");
             return EXIT_FILE_ERROR;
         }   
     }
     
 
-    if (expectedLineLength < ACCEPTED_DIM || expectedLineLength > ACCEPTED_DIM) {
+    if (j < ACCEPTED_DIM || j > ACCEPTED_DIM) {
         printf("File dimensions not valid\n");
         return EXIT_FILE_ERROR;
     }
@@ -183,9 +152,9 @@ int checkColDimensions(FILE *file, int rows) {
 * @brief input values for rows and columns and changes MAZEINFO instance of struct and adds to MAZEPIECE 2D array 
 *
 * @param file is used to be iterated over and characters put into the struct funcMazeInfo 
-* @param funcMazeInfo struct used to put characters into 
+* @param funcGridInfo struct used to put characters into 
 *
-* @returns 3 if an error occurs with number of starts and ends  or 0 if one does not 
+* @returns 3 if an error occurs with number of starts and ends or 0 if one does not 
 */
  
 
@@ -208,7 +177,7 @@ int tokeniseMaze(FILE *file, gridInfo *funcGridInfo) {
             if (c == '\n') {
                 continue;
             } else {
-                funcGridInfo->gridArray[i][j] = c;  
+                funcGridInfo->gridArray[i][j] = atoi(c);  
             }
         }
     }
@@ -217,7 +186,6 @@ int tokeniseMaze(FILE *file, gridInfo *funcGridInfo) {
         printf("Data in file is not valid\n");
         return EXIT_FILE_ERROR;
     }
-
     
     return 0;
 

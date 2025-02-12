@@ -52,25 +52,60 @@ void threadDef(){
 }
 
 /**
-* @brief 
+* @brief checks each column of integers to see if all expected values appear
 *
-* @param 
+* @param grid
 * @returns
 */
 
-// function for checking if all values found 
-// using flags to check if values 1-9 are present 
-// make current val be to check and re
-// do by column with 9 threads 
+int* checkIntCol(gridInfo *grid, parameters *index){
 
-int* checkInt(gridInfo *grid, int startIndex){
-
-    int validNum = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int i = 0;
-    int count = 0;
-
-    // for loop through validNum and for every value in row/column check if present
-    // need count 
+    int i = index->column;
     int isValid = 0;
-    return 0;
+    
+    for(int c = 1; c<=9; c++){
+        for(i; i<=9; i++){
+            if(grid->gridArray[index->row][i] == c){
+                isValid = 1;
+                continue;
+                isValid = 0;
+            }
+        }
+    }
+
+    if(isValid){
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+/*
+* @brief checks each row of integers to see if all expected values appear
+*
+* @param grid
+* @returns
+*/
+
+
+int* checkIntRow(gridInfo *grid, parameters *index){
+
+    int i = index->row;
+    int isValid = 0;
+    
+    for(int c = 1; c<=9; c++){
+        for(i; i<=9; i++){
+            if(grid->gridArray[i][index->column] == c){
+                isValid = 1;
+                continue;
+                isValid = 0;
+            }
+        }
+    }
+
+    if(isValid){
+        return 0;
+    } else {
+        return 1;
+    }
 }
