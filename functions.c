@@ -10,10 +10,7 @@
 // all helper functions declared here
 
 /**
-* @brief 
-*
-* @param 
-* @returns
+* @brief create the threads to check the sudoku solution provided 
 */
 
 // setup threads here to check the rows and columns 
@@ -30,15 +27,15 @@ void threadDef(){
 
     pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7, thread8, thread9;
 
-    pthread_create(&thread1, NULL, checkInt, data);
-    pthread_create(&thread2, NULL, checkInt, data);
-    pthread_create(&thread3, NULL, checkInt, data);
-    pthread_create(&thread4, NULL, checkInt, data);
-    pthread_create(&thread5, NULL, checkInt, data);
-    pthread_create(&thread6, NULL, checkInt, data);
-    pthread_create(&thread7, NULL, checkInt, data);
-    pthread_create(&thread8, NULL, checkInt, data);
-    pthread_create(&thread9, NULL, checkInt, data);
+    pthread_create(&thread1, NULL, checkIntCol, data);
+    pthread_create(&thread2, NULL, checkIntCol, data);
+    pthread_create(&thread3, NULL, checkIntCol, data);
+    pthread_create(&thread4, NULL, checkIntCol, data);
+    pthread_create(&thread5, NULL, checkIntCol, data);
+    pthread_create(&thread6, NULL, checkIntCol, data);
+    pthread_create(&thread7, NULL, checkIntCol, data);
+    pthread_create(&thread8, NULL, checkIntCol, data);
+    pthread_create(&thread9, NULL, checkIntCol, data);
 
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
@@ -49,13 +46,17 @@ void threadDef(){
     pthread_join(thread7, NULL);
     pthread_join(thread8, NULL);
     pthread_join(thread9, NULL);
+
+    // need to free and exit threads at the end of use 
+
 }
 
 /**
 * @brief checks each column of integers to see if all expected values appear
 *
 * @param grid
-* @returns
+* @param index
+* @returns integer for successful completion
 */
 
 int* checkIntCol(gridInfo *grid, parameters *index){
